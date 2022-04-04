@@ -1,0 +1,113 @@
+:root {
+  --dark-jungle-green: rgba(4, 27, 21, 1);
+  --timberwolf: rgb(231, 228, 218);
+  --slate-gray: rgba(98, 131, 149, 1);
+  --eggplant: rgb(138, 54, 94);
+  --copper-rose: rgb(202, 175, 179);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Fira Sans', sans-serif;
+}
+
+header {
+  position: fixed;
+  width: 100%;
+}
+
+nav {
+  
+  background-color: var(--timberwolf);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 2rem;
+}
+
+#navbar-coins {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+  
+}
+
+.navbar-coin {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 80%;
+  cursor: pointer;
+  transition: transform .1s ease-in-out;
+}
+
+.navbar-coin:hover {
+  color: var(--slate-gray);
+  transform: scale(1.04);
+}
+
+#logo {
+  width: 150px;
+}
+
+#user-interface {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding-top: 9rem;
+}
+
+.global-info {
+  text-align: center;
+  margin-bottom: 2rem;
+  font-size: 1.3rem;
+}
+
+.glb-value-name {
+  font-weight: bold;
+  margin-left: 1rem;
+}
+
+th, td {
+  
+  text-align: center;
+  height: 3rem;
+  padding: 0 .2rem;
+}
+
+tr {
+  cursor: pointer;
+  transition: transform .1s ease-in-out;
+}
+
+tr:nth-child(even) {background-color: #f2f2f2;}
+
+tr.coin-row:hover {
+  background-color: var(--copper-rose);
+  transform: scale(1.01);
+  color: white;
+}
+
+table {
+  width: 95%;
+  font-size: 1.2rem;
+}
+
+.coin-logo {
+  width: 1rem;
+}
+
+.decreasing {
+  color: var(--eggplant);
+}
+
+.increasing {
+  color: rgb(0, 102, 0);
+}
