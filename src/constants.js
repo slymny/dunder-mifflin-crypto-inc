@@ -15,9 +15,29 @@ export const API_BASE_URL = 'https://api.coinpaprika.com/v1/';
 export const GLOBAL_INFO = 'global';
 export const TICKERS = 'tickers/';
 export const COINS = 'coins/';
-
-export const ANSWERS_LIST_ID = 'answers-list';
-export const NEXT_QUESTION_BUTTON_ID = 'next-question-button';
-
-export const ARRAY_OF_COIN_IDS = ["btc-bitcoin", "eth-ethereum", "usdt-tether" , "bnb-binance-coin", "usdc-usd-coin", "hex-hex", "xrp-xrp", "ada-cardano", "luna-terra"/*, "sol-solana", "avax-avalanche", "dot-polkadot", "doge-dogecoin", "busd-binance-usd", "ust-terrausd", "matic-polygon", "shib-shiba-inu", "near-near-protocol", "steth-lido-staked-ether" */];
+export const ARRAY_OF_COIN_IDS = [
+  'btc-bitcoin',
+  'eth-ethereum',
+  'usdt-tether',
+  'bnb-binance-coin',
+  'usdc-usd-coin',
+  'hex-hex',
+  'ada-cardano',
+  'luna-terra',
+  'xrp-xrp',
+  'sol-solana',
+  'avax-avalanche',
+  'dot-polkadot',
+  'doge-dogecoin',
+  'busd-binance-usd',
+  'ust-terrausd',
+  'matic-polygon',
+  'shib-shiba-inu' /*, "near-near-protocol", "steth-lido-staked-ether" */,
+];
+export const START_INDEX = 0;
+export const END_INDEX = 9;
+export const END_INDEX_NAVBAR = 5;
+export const SEARCH_RESULTS_URL = 'https://api.coinpaprika.com/v1/search/?q=';
+export const SEARCH_CURRENCIES_URL = '&c=currencies&limit=9';
+export const INPUT_FIELD = 'input-field';
 
