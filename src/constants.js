@@ -21,18 +21,21 @@ export const ARRAY_OF_COIN_IDS = [
   'usdt-tether',
   'bnb-binance-coin',
   'usdc-usd-coin',
+  'doge-dogecoin',
+  'busd-binance-usd',
   'hex-hex',
+  'shib-shiba-inu',
   'ada-cardano',
   'luna-terra',
   'xrp-xrp',
   'sol-solana',
   'avax-avalanche',
   'dot-polkadot',
-  'doge-dogecoin',
-  'busd-binance-usd',
+  
+  
   'ust-terrausd',
   'matic-polygon',
-  'shib-shiba-inu' /*, "near-near-protocol", "steth-lido-staked-ether" */,
+   /*, "near-near-protocol", "steth-lido-staked-ether" */,
 ];
 export const START_INDEX = 0;
 export const END_INDEX = 9;

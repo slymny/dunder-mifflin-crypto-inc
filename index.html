@@ -3,54 +3,62 @@
   <head>
     <meta charset="utf8" />
     <title>Dunder Mifflin Crypto Inc.</title>
-    <link rel="icon" type="image/x-icon" href="./public/logo.ico">
-    <link href="https://fonts.googleapis.com/css2?family=Fira+Sans:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="icon" type="image/x-icon" href="./public/logo.ico" />
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Sans:wght@400;700&display=swap" rel="stylesheet" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css"
+      integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
     <link href="./public/style.css" rel="stylesheet" />
-    
   </head>
 
   <body>
     <!-- Put your HTML here -->
     <header>
       <nav id="navbar">
-        <img src="./public/logo.svg" alt="logo" id="logo">
-        <div id="navbar-coins">
-
+        <img src="./public/logo.svg" alt="logo" id="logo" />
+        <div id="navbar-coins"></div>
+        <div class="search-box">
+          <i class="fas fa-search-dollar"></i>
+          <input id="input-field" type="text" placeholder="Enter a coin" />
+          
+          
         </div>
       </nav>
     </header>
     <div id="user-interface">
       <div id="global-info">
-
+        
       </div>
-      <hr>
       <table>
         <thead>
           <tr>
-            <th>BTC Rank</th>
-            <th>Symbol</th>
+            <th class="disappear-xsm">BTC Rank</th>
+            <th class="disappear-xsm">Symbol</th>
             <th>Name</th>
             <th>Price</th>
-            <th>ATH Price</th>
-            <th>Market Cap</th>
-            <th>Volume 24h</th>
+            <th class="disappear-sm">ATH Price</th>
+            <th class="disappear-mid">Market Cap</th>
+            <th class="disappear-mid">Volume 24h</th>
             <th>Change 15m</th>
-            <th>Change 6h</th>
+            <th class="disappear-xsm">Change 6h</th>
             <th>Change 12h</th>
             <th>Change 24h</th>
             <th>Change 7d</th>
-            <th>Change 30d</th>
-            <th>Last Update</th>
-            <th>7d Chart</th>
+            <th class="disappear-mid">Change 30d</th>
+            <th class="disappear-mid">Last Update</th>
+            <th class="disappear-sm">7d Chart</th>
           </tr>
         </thead>
-        <tbody id="coins">
-        </tbody>`;
+        <tbody id="coins"></tbody>
+ 
       </table>
     </div>
 
     <!-- your data -->
     <script type="module" src="src/app.js"></script>
-    
   </body>
 </html>

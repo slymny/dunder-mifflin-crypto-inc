@@ -44,8 +44,12 @@ export const initLandingPage = async () => {
     navbarCoinsDiv.appendChild(coinDiv);
   });
 
+  let searchTimeoutToken = 0;
   const inputField = document.getElementById(INPUT_FIELD);
-  inputField.addEventListener('keyup', showSearchResults);
+  inputField.addEventListener('keyup', () => {
+    clearTimeout(searchTimeoutToken);
+    searchTimeoutToken = setTimeout(showSearchResults,500);
+  })
 };
 
 export async function openExplorerPage(coin) {
