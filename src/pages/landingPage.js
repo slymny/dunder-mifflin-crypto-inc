@@ -1,52 +1,101 @@
 'use strict';
 
-import { GLOBAL_INFO_ID, API_BASE_URL, GLOBAL_INFO, ARRAY_OF_COIN_IDS, TICKERS, EXPLORER_BASE_URL, START_INDEX, END_INDEX_NAVBAR } from '../constants.js';
-import { createGlobalInfo, createCoinsTable, changeColor } from '../views/landingView.js';
-import { fetchData } from '../lib/fetchData.js';
-import { moneyFormatter } from '../lib/moneyFormatter.js';
+import {
+  GLOBAL_INFO_ID,
+  API_BASE_URL,
+  GLOBAL_INFO,
+  TICKERS,
+  COINS_LINK,
+  START_INDEX,
+  END_INDEX_NAVBAR,
+  INPUT_FIELD_CLASS,
+  NAVBAR_COINS_ID,
+  PERCENT_CHANGE_CLASS,
+  PERCENT_CHANGE_GLOBAL_CLASS,
+} from '../constants.js';
+import {createGlobalInfo, createCoinsTable, changeColor} from '../views/landingView.js';
+import {fetchData} from '../lib/fetchData.js';
+import {moneyFormatter} from '../lib/moneyFormatter.js';
+import {showSearchResults} from './searchPage.js';
+import {createInfo} from '../lib/info.js';
 
+// Landing page is initialize with this function
 export const initLandingPage = async () => {
+  // Variables starts with global creates the global info section
   const globalInfo = document.getElementById(GLOBAL_INFO_ID);
-  
-  const globalResponse = await fetchData(`${API_BASE_URL}${GLOBAL_INFO}`);
-  const globalData = createGlobalInfo(globalResponse);
-  globalInfo.appendChild(globalData);
-
   const table = document.getElementById('coins');
-  const coinsInfo = await Promise.all(ARRAY_OF_COIN_IDS.map(async coin => {
-    coin = await fetchData(`${API_BASE_URL}${TICKERS}${coin}`);
-    return coin;
-  }));
-  
-  coinsInfo
-  .sort((a,b) => a.rank - b.rank)
-  .forEach(coin => {
-    const coinRow = createCoinsTable(coin);
+  const navbarCoinsDiv = document.getElementById(NAVBAR_COINS_ID);
+
+  try {
+    const globalResponse = await fetchData(`${API_BASE_URL}${GLOBAL_INFO}`);
+    const globalData = createGlobalInfo(globalResponse);
+    globalInfo.appendChild(globalData);
+
+    // To fill the table, the function takes the ids of the coins from local storage.
+    const coinIds = JSON.parse(localStorage.getItem('coinIds'));
     
-    table.appendChild(coinRow);
+    // Fetching and storing of the coins in the coinsInfo array
+    const coinsInfo = await Promise.all(
+      coinIds.map(async coin => {
+        coin = await fetchData(`${API_BASE_URL}${TICKERS}${coin}`);
+        return coin;
+      }),
+    );
 
-    coinRow.onclick = function() {
-      openExplorerPage(coin);
-    };
-  });
-  changeColor('.change, .global-change');
+    // Sorts the coins and creates row for each of the coin
+    coinsInfo
+      .sort((a, b) => a.rank - b.rank)
+      .forEach(coin => {
+        const coinRow = createCoinsTable(coin);
+        table.appendChild(coinRow);
 
-  const navbarCoins = coinsInfo.slice(START_INDEX, END_INDEX_NAVBAR);
-  const navbarCoinsDiv = document.getElementById('navbar-coins');
-  navbarCoins.forEach(coin => {
-    const coinDiv = createNavbarCoinDiv(coin);
-    coinDiv.onclick = function() {
-      openExplorerPage(coin);
-    }
-    navbarCoinsDiv.appendChild(coinDiv);
-  })
+      // To explore more of the coin this event handler directs user to another web page
+        coinRow.onclick = function () {
+          openExplorerPage(coin);
+        };
+      });
 
+    // Sets the color of the percentage values according to increase or decrease
+    changeColor(`${PERCENT_CHANGE_CLASS}, ${PERCENT_CHANGE_GLOBAL_CLASS}`);
+
+    // Creates navbar short information about popular coins
+    const navbarCoins = coinsInfo.slice(START_INDEX, END_INDEX_NAVBAR);
+    navbarCoins.forEach(coin => {
+      const coinDiv = createNavbarCoinDiv(coin);
+      coinDiv.onclick = function () {
+        openExplorerPage(coin);
+      };
+      navbarCoinsDiv.appendChild(coinDiv);
+    });
+
+    // Listens every keyup event and if the page size is mobile it deletes the value of the navbar search field and vice versa.
+    let searchTimeoutToken = 0;
+    const inputFields = document.querySelectorAll(`.${INPUT_FIELD_CLASS}`);
+    inputFields.forEach((input, i) =>
+      input.addEventListener('keyup', () => {
+        switch(i) {
+          case 0:
+            inputFields[1].value = '';
+            break;
+          case 1:
+            inputFields[0].value = '';
+        }
+        clearTimeout(searchTimeoutToken);
+        searchTimeoutToken = setTimeout(showSearchResults, 500);
+      }),
+    );
+  } catch (error) {
+    // This prints error message to screen
+    createInfo('Oops... Something went wrong. Please try again.');
+  }
 };
 
-async function openExplorerPage(coin) {
-  window.open(`${EXPLORER_BASE_URL}${coin.id}`);
-};
+// Opens detailed web page about the coin
+export function openExplorerPage(coin) {
+  window.open(`${COINS_LINK}${coin.id}`);
+}
 
+// Creates navbar short information for popular coins
 function createNavbarCoinDiv(coin) {
   const coinDiv = document.createElement('div');
   coinDiv.className = 'navbar-coin';
@@ -57,14 +106,15 @@ function createNavbarCoinDiv(coin) {
   const change = coin.quotes.USD.percent_change_15m;
   coinPrice.textContent = moneyFormatter.format(price);
   coinDiv.append(coinSymbol, coinPrice);
-  if(change < 0) {
+  
+  // change the color of the value according to increase and decrease
+  if (change < 0) {
     coinDiv.classList.add('decreasing');
-  } else if(change > 0) {
+  } else if (change > 0) {
     coinDiv.classList.add('increasing');
   } else {
     coinDiv.classList.add('unchanged');
   }
-    return coinDiv;
+
+  return coinDiv;
 }
-
-

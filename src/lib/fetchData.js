@@ -2,7 +2,7 @@
 const HTTP_STATUS_NO_CONTENT = 204;
 
 /**
- * Fetch data using an HTTP GET request and optionally cache the response.
+ * Fetch data using an HTTP GET request.
  * @param {string} url The url to fetch from.
  */
 export async function fetchData(url) {
@@ -22,4 +22,3 @@ export async function fetchData(url) {
   return data;
 }
 
-//export default fetchData;

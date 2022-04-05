@@ -6,26 +6,27 @@ import {moneyFormatter} from '../lib/moneyFormatter.js'
  * Create the landing page
  * @returns {Element}
  */
+
+// Creates the global information section
 export const createGlobalInfo = (props) => {
   const element = document.createElement('div');
-  element.className = 'global-info';
+  element.className = 'global-info-element';
   element.innerHTML = String.raw`
     <p>
     <span class="glb-value-name">Market Cap: </span>${moneyFormatter.format(props.market_cap_usd)}    
     <span class="glb-value-name">Volume 24h: </span><span class="global-change">${props.volume_24h_change_24h}</span>
     <span class="glb-value-name">Market Cap: </span><span class="global-change">${props.market_cap_change_24h}</span>  
     <span class="glb-value-name">Market Cap ATH Value: </span>${moneyFormatter.format(props.market_cap_ath_value)}  
-    <span class="glb-value-name">Bitcoin Dominance: </span>${props.bitcoin_dominance_percentage}</p>
-    `
+    <span class="glb-value-name">Bitcoin Dominance: </span>${props.bitcoin_dominance_percentage}</p>`
   return element;
 };
 
-
+// Creates row for coin
 export const createCoinsTable = (props) => {
   const element = document.createElement('tr');
   element.className = 'coin-row';
   
-  const {name, id, symbol, rank, last_updated, quotes:{USD:{price, market_cap, volume_24h, percent_change_15m, percent_change_6h, percent_change_12h, percent_change_24h, percent_change_7d, percent_change_30d, percent_change_1y, ath_price, percent_from_price_ath}}} = props;
+  const {name, id, symbol, rank, last_updated, quotes:{USD:{price, market_cap, volume_24h, percent_change_15m, percent_change_6h, percent_change_12h, percent_change_24h, percent_change_7d, percent_change_30d, ath_price}}} = props;
   const updateDate = new Date(last_updated);
   const updateTime = updateDate.toLocaleTimeString();
 
@@ -49,14 +50,14 @@ export const createCoinsTable = (props) => {
     return element;
 } 
 
+// Changes the color of the value according to increase and decrease
 export function changeColor(classNames) {
   document.querySelectorAll(classNames).forEach(elem => {
-    console.log(elem);
     if(Number(elem.innerText) < 0) {
       elem.classList.add('decreasing');
     } else if(Number(elem.innerText) > 0) {
       elem.classList.add('increasing');
-    };
+    }
   });
 }
 
