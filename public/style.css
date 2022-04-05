@@ -32,9 +32,10 @@ nav {
 
 #navbar-coins {
   display: flex;
-  gap: 1rem;
+  gap: 3rem;
   align-items: center;
-  
+  width: 70%;
+  justify-content: flex-start;
 }
 
 .navbar-coin {
@@ -53,7 +54,7 @@ nav {
 }
 
 #logo {
-  width: 150px;
+  width: 180px;
 }
 
 #user-interface {
@@ -87,7 +88,7 @@ tr {
   transition: transform .1s ease-in-out;
 }
 
-tr:nth-child(even) {background-color: #f2f2f2;}
+tbody tr:nth-child(odd) {background-color: #f2f2f2;}
 
 tr.coin-row:hover {
   background-color: var(--copper-rose);
@@ -100,6 +101,48 @@ table {
   font-size: 1.2rem;
 }
 
+@media (max-width: 600px){
+  tr th.disappear-mobile,tr td.disappear-mobile{
+    display: none;
+  }
+  tr th.appear-mobile,tr td.appear-mobile{
+    display: contents;
+  }
+  h1 {
+    font-size: 1.5rem;
+  }
+  #user-interface {
+    padding-top: 15rem;
+  }
+}
+
+@media (max-width: 800px){
+  tr th.disappear-xsm,tr td.disappear-xsm{
+    display:none;
+  }
+  #navbar-coins {
+    flex-wrap: wrap;
+  }
+  
+}
+
+@media (max-width: 1000px){
+  tr th.disappear-sm,tr td.disappear-sm{
+    display:none;
+  }
+  #navbar-coins {
+    gap: 1rem;
+  }
+}
+@media (max-width: 1400px){
+  tr th.disappear-mid,tr td.disappear-mid{
+    display:none;
+  }
+  #navbar-coins {
+    gap: 2rem;
+  }
+}
+
 .coin-logo {
   width: 1rem;
 }
@@ -110,4 +153,8 @@ table {
 
 .increasing {
   color: rgb(0, 102, 0);
+}
+
+.unchanged {
+  color: white;
 }
