@@ -144,9 +144,6 @@ table {
   tr th.disappear-mobile,tr td.disappear-mobile{
     display: none;
   }
-  tr th.appear-mobile,tr td.appear-mobile{
-    display: contents;
-  }
   h1 {
     font-size: 1.7rem;
   }
@@ -156,6 +153,13 @@ table {
   .global-info-element {
     font-size: 1.2rem;
   }
+  .navbar-coin {
+    font-size: .9rem;
+  }
+  #navbar-coins {
+    flex-wrap: wrap;
+    margin-right: 0;
+  }
 }
 
 @media (max-width: 800px){
@@ -163,7 +167,7 @@ table {
     display:none;
   }
   #navbar-coins {
-    flex-wrap: wrap;
+    gap: 0;
   }
 }
 
@@ -185,9 +189,6 @@ table {
 @media (max-width: 1400px){
   tr th.disappear-mid,tr td.disappear-mid{
     display:none;
-  }
-  #navbar-coins {
-    gap: 2rem;
   }
 }
 

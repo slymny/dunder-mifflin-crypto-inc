@@ -36,15 +36,15 @@ export const createCoinsTable = (props) => {
       <td class="disappear-mobile">${name}</td>
       <td>${moneyFormatter.format(price)}</td>
       <td class="disappear-sm">${moneyFormatter.format(ath_price)}</td>
-      <td class="disappear-sm disappear-mid">${moneyFormatter.format(market_cap)}</td>
-      <td class="disappear-sm disappear-mid">${moneyFormatter.format(volume_24h)}</td>
+      <td class="disappear-mid">${moneyFormatter.format(market_cap)}</td>
+      <td class="disappear-mid">${moneyFormatter.format(volume_24h)}</td>
       <td class="change">${percent_change_15m}</td>
       <td class="change disappear-xsm">${percent_change_6h}</td>
       <td class="change disappear-mobile">${percent_change_12h}</td>
       <td class="change">${percent_change_24h}</td>
       <td class="change disappear-mobile">${percent_change_7d}</td>
       <td class="change disappear-mid">${percent_change_30d}</td>
-      <td class="disappear-sm disappear-mid">${updateTime}</td>
+      <td class="disappear-mid">${updateTime}</td>
       <td class="disappear-sm"><img src="https://graphs.coinpaprika.com/currency/chart/${id}/7d/chart.svg"></td>`
 
     return element;
