@@ -6,6 +6,13 @@ You can search your favorite cryptocurrencies, look up details and decide which 
 
 [Check it out!](https://slymny.github.io/dunder-mifflin-crypto-inc/)
 
+
+
+<img src="https://github.com/slymny/dunder-mifflin-crypto-inc/blob/main/public/screenshot_desktop.png?raw=true" width="80%" title="Mobile" alt="mobile">
+
+
+Also responsive
+
 <img src="https://github.com/slymny/dunder-mifflin-crypto-inc/blob/main/public/screenshot_mobile.png?raw=true" width="20%" title="Mobile" alt="mobile">
 
 
