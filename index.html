@@ -16,7 +16,6 @@
   </head>
 
   <body>
-    <!-- Put your HTML here -->
     <header>
       <nav id="navbar">
         <img src="./public/logo.svg" alt="logo" id="logo" />
@@ -28,42 +27,43 @@
       </nav>
     </header>
     <div id="user-interface">
+
+      <!-- Search box for responsivity, the other one disappears. -->
       <div class="search-box" id="search-box-2">
         <i class="fas fa-search-dollar"></i>
         <input class="input-field" type="text" placeholder="Search a coin" />
       </div>
       <h1>Global CryptoCurrency Market Info</h1>
+      <br>
+
       <div id="global-info">
-        
-    <br>
         
       </div>
       <table>
         <thead>
           <tr>
             <th class="disappear-xsm">BTC Rank</th>
-            <th class="disappear-xsm">Symbol</th>
-            <th>Name</th>
+            <th>Symbol</th>
+            <th class="disappear-mobile">Name</th>
             <th>Price</th>
             <th class="disappear-sm">ATH Price</th>
             <th class="disappear-mid">Market Cap</th>
             <th class="disappear-mid">Volume 24h</th>
             <th>Change 15m</th>
             <th class="disappear-xsm">Change 6h</th>
-            <th>Change 12h</th>
+            <th class="disappear-mobile">Change 12h</th>
             <th>Change 24h</th>
-            <th>Change 7d</th>
+            <th class="disappear-mobile">Change 7d</th>
             <th class="disappear-mid">Change 30d</th>
             <th class="disappear-mid">Last Update</th>
             <th class="disappear-sm">7d Chart</th>
           </tr>
         </thead>
-        <tbody id="coins"></tbody>
- 
+        <tbody id="coins">
+        </tbody>
       </table>
     </div>
 
-    <!-- your data -->
-    <script type="module" src="src/app.js"></script>
+    <script type="module" src="src/app.js"></script>   
   </body>
 </html>

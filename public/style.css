@@ -34,9 +34,9 @@ nav {
 #navbar-coins {
   display: flex;
   gap: 3rem;
-  align-items: center;
-  
+  align-items: center; 
   margin-left: 2rem; 
+  justify-content: flex-start;
 }
 
 .navbar-coin {
@@ -126,7 +126,7 @@ tr {
   transition: transform .1s ease-in-out;
 }
 
-tr:nth-child(even) {background-color: #f2f2f2;}
+tbody tr:nth-child(odd) {background-color: #f2f2f2;}
 
 tr.coin-row:hover {
   background-color: var(--copper-rose);
@@ -144,7 +144,6 @@ table {
   tr th.disappear-xsm,tr td.disappear-xsm{
     display:none;
   }
-
 }
 
 @media (max-width: 980px){
@@ -162,6 +161,48 @@ table {
   }
 }
 
+@media (max-width: 1400px){
+  tr th.disappear-mid,tr td.disappear-mid{
+    display:none;
+  }
+  #navbar-coins {
+    gap: 2rem;
+  }
+}
+
+@media (max-width: 600px){
+  tr th.disappear-mobile,tr td.disappear-mobile{
+    display: none;
+  }
+  tr th.appear-mobile,tr td.appear-mobile{
+    display: contents;
+  }
+  h1 {
+    font-size: 1.5rem;
+  }
+  #user-interface {
+    padding-top: 15rem;
+  }
+}
+
+@media (max-width: 800px){
+  tr th.disappear-xsm,tr td.disappear-xsm{
+    display:none;
+  }
+  #navbar-coins {
+    flex-wrap: wrap;
+  }
+  
+}
+
+@media (max-width: 1000px){
+  tr th.disappear-sm,tr td.disappear-sm{
+    display:none;
+  }
+  #navbar-coins {
+    gap: 1rem;
+  }
+}
 @media (max-width: 1400px){
   tr th.disappear-mid,tr td.disappear-mid{
     display:none;
