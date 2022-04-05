@@ -36,16 +36,19 @@ nav {
   gap: 3rem;
   align-items: center;
   
+  margin-left: 2rem; 
 }
 
 .navbar-coin {
   display: flex;
+  flex-shrink: 1;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   height: 80%;
   cursor: pointer;
   transition: transform .1s ease-in-out;
+  
 }
 
 .navbar-coin:hover {
@@ -62,6 +65,9 @@ nav {
   position: relative;
   background-color: white;
   border-radius: 4px;
+  margin-left: 2rem;
+  flex-grow: 1;
+  flex-shrink: 0;
 }
 
 #input-field {
@@ -87,6 +93,12 @@ nav {
   justify-content: center;
   align-items: center;
   padding-top: 9rem;
+  text-align: center;
+}
+
+ul {
+  display: inline-block;
+  list-style-type: none;
 }
 
 .global-info-element {
@@ -136,10 +148,16 @@ table {
   tr th.disappear-sm,tr td.disappear-sm{
     display:none;
   }
+  #navbar-coins {
+    gap: 1rem;
+  }
 }
 @media (max-width: 1400px){
   tr th.disappear-mid,tr td.disappear-mid{
     display:none;
+  }
+  #navbar-coins {
+    gap: 2rem;
   }
 }
 

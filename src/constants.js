@@ -14,7 +14,7 @@ export const NAVBAR_COINS_ID = 'navbar-coins';
 export const API_BASE_URL = 'https://api.coinpaprika.com/v1/';
 export const GLOBAL_INFO = 'global';
 export const TICKERS = 'tickers/';
-export const COINS = 'coins/';
+export const COINS_LINK = 'https://coinpaprika.com/coin/';
 export const ARRAY_OF_COIN_IDS = [
   'btc-bitcoin',
   'eth-ethereum',
@@ -24,18 +24,17 @@ export const ARRAY_OF_COIN_IDS = [
   'doge-dogecoin',
   'busd-binance-usd',
   'hex-hex',
+  'avax-avalanche'/*
   'shib-shiba-inu',
   'ada-cardano',
   'luna-terra',
   'xrp-xrp',
   'sol-solana',
-  'avax-avalanche',
+  
   'dot-polkadot',
-  
-  
   'ust-terrausd',
   'matic-polygon',
-   /*, "near-near-protocol", "steth-lido-staked-ether" */,
+   , "near-near-protocol", "steth-lido-staked-ether" */,
 ];
 export const START_INDEX = 0;
 export const END_INDEX = 9;
