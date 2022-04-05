@@ -19,10 +19,10 @@ body {
 header {
   position: fixed;
   width: 100%;
+  z-index: 10;
 }
 
 nav {
-  
   background-color: var(--timberwolf);
   display: flex;
   justify-content: space-between;
@@ -101,7 +101,6 @@ nav {
   border: 1px solid black;
   width: 80%;
   margin: 2rem 0;
-  z-index: -1;
 }
 
 .global-info-element {
@@ -149,10 +148,13 @@ table {
     display: contents;
   }
   h1 {
-    font-size: 1.5rem;
+    font-size: 1.7rem;
   }
   #user-interface {
-    padding-top: 15rem;
+    padding-top: 9rem;
+  }
+  .global-info-element {
+    font-size: 1.2rem;
   }
 }
 

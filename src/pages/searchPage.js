@@ -11,9 +11,7 @@ export const showSearchResults = async () => {
 
   let searchString = '';
   const [inputDesktop, inputMobile] = document.querySelectorAll(`.${INPUT_FIELD_CLASS}`);
-  inputMobile.value ? searchString = inputMobile.value.toLowerCase()
-  : searchString = inputDesktop.value.toLowerCase();
-  
+  inputMobile.value ? (searchString = inputMobile.value.toLowerCase()) : (searchString = inputDesktop.value.toLowerCase());
 
   try {
     if (!searchString) {
@@ -30,22 +28,21 @@ export const showSearchResults = async () => {
     } else {
       const searchResultsIds = [];
       const results = await fetchData(`${SEARCH_RESULTS_URL}${searchString}${SEARCH_CURRENCIES_URL}`);
-      results.currencies.forEach(result => searchResultsIds.push(result.id));
+      results.currencies.forEach(result => {
+        if (result.is_active) searchResultsIds.push(result.id);
+      });
 
       localStorage.setItem('coinIds', JSON.stringify(searchResultsIds));
-
       const coinsInfo = await Promise.all(
         searchResultsIds.map(async coin => {
           coin = await fetchData(`${API_BASE_URL}${TICKERS}${coin}`);
           return coin;
         }),
       );
-      
+
       if (coinsInfo.length > 0) {
         createTable(coinsInfo);
         changeColor(`${PERCENT_CHANGE_CLASS}, ${PERCENT_CHANGE_GLOBAL_CLASS}`);
-        inputDesktop.value = '';
-        inputMobile.value = '';
       } else {
         createInfo('Oops... There is no such coin. Please try again.');
       }
