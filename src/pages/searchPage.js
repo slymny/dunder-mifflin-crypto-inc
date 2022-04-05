@@ -11,11 +11,9 @@ export const showSearchResults = async () => {
 
   let searchString = '';
   const [inputDesktop, inputMobile] = document.querySelectorAll(`.${INPUT_FIELD_CLASS}`);
-  if (inputMobile.value) {
-    searchString = inputMobile.value.toLowerCase();
-  } else {
-    searchString = inputDesktop.value.toLowerCase();
-  }
+  inputMobile.value ? searchString = inputMobile.value.toLowerCase()
+  : searchString = inputDesktop.value.toLowerCase();
+  
 
   try {
     if (!searchString) {
@@ -42,10 +40,12 @@ export const showSearchResults = async () => {
           return coin;
         }),
       );
-      console.log(coinsInfo);
+      
       if (coinsInfo.length > 0) {
         createTable(coinsInfo);
         changeColor(`${PERCENT_CHANGE_CLASS}, ${PERCENT_CHANGE_GLOBAL_CLASS}`);
+        inputDesktop.value = '';
+        inputMobile.value = '';
       } else {
         createInfo('Oops... There is no such coin. Please try again.');
       }

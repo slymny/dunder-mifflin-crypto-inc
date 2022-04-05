@@ -28,6 +28,7 @@ export const INPUT_FIELD_CLASS = 'input-field';
 export const PERCENT_CHANGE_CLASS = '.change';
 export const PERCENT_CHANGE_GLOBAL_CLASS = '.global-change';
 
+// Stores the coin ids in the local storage
 window.addEventListener("beforeunload", () => {
     localStorage.setItem("coinIds", JSON.stringify(ARRAY_OF_COIN_IDS));
 });
