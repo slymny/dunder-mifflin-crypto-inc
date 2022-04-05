@@ -1,11 +1,24 @@
 'use strict';
 
-import {GLOBAL_INFO_ID, API_BASE_URL, GLOBAL_INFO, ARRAY_OF_COIN_IDS, TICKERS, COINS_LINK, START_INDEX, END_INDEX_NAVBAR, INPUT_FIELD, NAVBAR_COINS_ID, PERCENT_CHANGE_CLASS, PERCENT_CHANGE_GLOBAL_CLASS} from '../constants.js';
+import {
+  GLOBAL_INFO_ID,
+  API_BASE_URL,
+  GLOBAL_INFO,
+  ARRAY_OF_COIN_IDS,
+  TICKERS,
+  COINS_LINK,
+  START_INDEX,
+  END_INDEX_NAVBAR,
+  INPUT_FIELD_CLASS,
+  NAVBAR_COINS_ID,
+  PERCENT_CHANGE_CLASS,
+  PERCENT_CHANGE_GLOBAL_CLASS,
+} from '../constants.js';
 import {createGlobalInfo, createCoinsTable, changeColor} from '../views/landingView.js';
 import {fetchData} from '../lib/fetchData.js';
 import {moneyFormatter} from '../lib/moneyFormatter.js';
 import {showSearchResults} from './searchPage.js';
-import { createInfo } from '../lib/info.js';
+import {createInfo} from '../lib/info.js';
 
 export const initLandingPage = async () => {
   const globalInfo = document.getElementById(GLOBAL_INFO_ID);
@@ -23,7 +36,7 @@ export const initLandingPage = async () => {
       coinIds.map(async coin => {
         coin = await fetchData(`${API_BASE_URL}${TICKERS}${coin}`);
         return coin;
-      })
+      }),
     );
 
     coinsInfo
@@ -50,13 +63,23 @@ export const initLandingPage = async () => {
     });
 
     let searchTimeoutToken = 0;
-    const inputField = document.getElementById(INPUT_FIELD);
-    inputField.addEventListener('keyup', () => {
-      clearTimeout(searchTimeoutToken);
-      searchTimeoutToken = setTimeout(showSearchResults, 500);
-    });
+    const inputFields = document.querySelectorAll(`.${INPUT_FIELD_CLASS}`);
+    console.log(inputFields);
+    inputFields.forEach((input, i) =>
+      input.addEventListener('keyup', () => {
+        switch(i) {
+          case 0:
+            inputFields[1].value = '';
+            break;
+          case 1:
+            inputFields[0].value = '';
+        }
+        clearTimeout(searchTimeoutToken);
+        searchTimeoutToken = setTimeout(showSearchResults, 500);
+      }),
+    );
   } catch (error) {
-    createInfo('Oops... Something went wrong. Please try again.')
+    createInfo('Oops... Something went wrong. Please try again.');
   }
 };
 

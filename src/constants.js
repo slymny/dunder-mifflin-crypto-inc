@@ -30,7 +30,7 @@ export const START_INDEX = 0;
 export const END_INDEX_NAVBAR = 5;
 export const SEARCH_RESULTS_URL = 'https://api.coinpaprika.com/v1/search/?q=';
 export const SEARCH_CURRENCIES_URL = '&c=currencies&limit=9';
-export const INPUT_FIELD = 'input-field';
+export const INPUT_FIELD_CLASS = 'input-field';
 export const PERCENT_CHANGE_CLASS = '.change';
 export const PERCENT_CHANGE_GLOBAL_CLASS = '.global-change';
 
