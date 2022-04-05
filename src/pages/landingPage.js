@@ -1,6 +1,6 @@
 'use strict';
 
-import { GLOBAL_INFO_ID, API_BASE_URL, GLOBAL_INFO, ARRAY_OF_COIN_IDS, TICKERS, EXPLORER_BASE_URL } from '../constants.js';
+import { GLOBAL_INFO_ID, API_BASE_URL, GLOBAL_INFO, ARRAY_OF_COIN_IDS, TICKERS, EXPLORER_BASE_URL, START_INDEX, END_INDEX_NAVBAR } from '../constants.js';
 import { createGlobalInfo, createCoinsTable, changeColor } from '../views/landingView.js';
 import { fetchData } from '../lib/fetchData.js';
 import { moneyFormatter } from '../lib/moneyFormatter.js';
@@ -22,15 +22,16 @@ export const initLandingPage = async () => {
   .sort((a,b) => a.rank - b.rank)
   .forEach(coin => {
     const coinRow = createCoinsTable(coin);
-    changeColor('.change, .global-change');
+    
     table.appendChild(coinRow);
 
-    coinRow.onclick = function(e) {
+    coinRow.onclick = function() {
       openExplorerPage(coin);
     };
   });
+  changeColor('.change, .global-change');
 
-  const navbarCoins = coinsInfo.slice(0, 5);
+  const navbarCoins = coinsInfo.slice(START_INDEX, END_INDEX_NAVBAR);
   const navbarCoinsDiv = document.getElementById('navbar-coins');
   navbarCoins.forEach(coin => {
     const coinDiv = createNavbarCoinDiv(coin);
@@ -60,7 +61,9 @@ function createNavbarCoinDiv(coin) {
     coinDiv.classList.add('decreasing');
   } else if(change > 0) {
     coinDiv.classList.add('increasing');
-  };
+  } else {
+    coinDiv.classList.add('unchanged');
+  }
     return coinDiv;
 }
 

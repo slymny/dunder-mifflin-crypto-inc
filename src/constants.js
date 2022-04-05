@@ -1,12 +1,5 @@
 'use strict';
 
-/*
- The constants file is used to store anything 
- that multiple files use, that should ALWAYS be the same
- 
- It is an industry standard to make these variables fully capitalised
-*/
-
 export const USER_INTERFACE_ID = 'user-interface';
 export const GLOBAL_INFO_ID = 'global-info';
 export const COINS_ROW_ID = 'coins';
@@ -29,5 +22,8 @@ export const ARRAY_OF_COIN_IDS = [
   'hex-hex',
   'xrp-xrp',
   'ada-cardano',
-  'luna-terra' /*, "sol-solana", "avax-avalanche", "dot-polkadot", "doge-dogecoin", "busd-binance-usd", "ust-terrausd", "matic-polygon", "shib-shiba-inu", "near-near-protocol", "steth-lido-staked-ether" */,
+  'luna-terra'
 ];
+
+export const START_INDEX = 0;
+export const END_INDEX_NAVBAR = 6;
