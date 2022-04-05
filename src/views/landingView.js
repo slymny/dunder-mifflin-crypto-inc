@@ -3,7 +3,7 @@
 import {moneyFormatter} from '../lib/moneyFormatter.js'
 
 /**
- * Create the welcome screen
+ * Create the landing page
  * @returns {Element}
  */
 export const createGlobalInfo = (props) => {
@@ -17,7 +17,6 @@ export const createGlobalInfo = (props) => {
     <span class="glb-value-name">Market Cap ATH Value: </span>${moneyFormatter.format(props.market_cap_ath_value)}  
     <span class="glb-value-name">Bitcoin Dominance: </span>${props.bitcoin_dominance_percentage}</p>
     `
-    
   return element;
 };
 
@@ -30,30 +29,29 @@ export const createCoinsTable = (props) => {
   const updateDate = new Date(last_updated);
   const updateTime = updateDate.toLocaleTimeString();
 
-
-
   element.innerHTML = String.raw`
-      <td>${rank}</td>
+      <td class="disappear-xsm">${rank}</td>
       <td><img class="coin-logo" src="https://static.coinpaprika.com/coin/${id}/logo.png?rev=10557311">${symbol}</td>
-      <td>${name}</td>
+      <td class="disappear-mobile">${name}</td>
       <td>${moneyFormatter.format(price)}</td>
-      <td>${moneyFormatter.format(ath_price)}</td>
-      <td>${moneyFormatter.format(market_cap)}</td>
-      <td>${moneyFormatter.format(volume_24h)}</td>
+      <td class="disappear-sm">${moneyFormatter.format(ath_price)}</td>
+      <td class="disappear-sm disappear-mid">${moneyFormatter.format(market_cap)}</td>
+      <td class="disappear-sm disappear-mid">${moneyFormatter.format(volume_24h)}</td>
       <td class="change">${percent_change_15m}</td>
-      <td class="change">${percent_change_6h}</td>
-      <td class="change">${percent_change_12h}</td>
+      <td class="change disappear-xsm">${percent_change_6h}</td>
+      <td class="change disappear-mobile">${percent_change_12h}</td>
       <td class="change">${percent_change_24h}</td>
-      <td class="change">${percent_change_7d}</td>
-      <td class="change">${percent_change_30d}</td>
-      <td>${updateTime}</td>
-      <td><img src="https://graphs.coinpaprika.com/currency/chart/${id}/7d/chart.svg"></td>`
+      <td class="change disappear-mobile">${percent_change_7d}</td>
+      <td class="change disappear-mid">${percent_change_30d}</td>
+      <td class="disappear-sm disappear-mid">${updateTime}</td>
+      <td class="disappear-sm"><img src="https://graphs.coinpaprika.com/currency/chart/${id}/7d/chart.svg"></td>`
 
     return element;
 } 
 
 export function changeColor(classNames) {
   document.querySelectorAll(classNames).forEach(elem => {
+    console.log(elem);
     if(Number(elem.innerText) < 0) {
       elem.classList.add('decreasing');
     } else if(Number(elem.innerText) > 0) {

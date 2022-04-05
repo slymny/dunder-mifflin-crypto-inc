@@ -12,9 +12,7 @@ const loadApp = () => {
     document.getElementById(NAVBAR_COINS_ID).innerHTML = '';
 
     initLandingPage()
-  }, 30000);
-
-  
+  }, 30000); 
 };
 
 window.addEventListener('load', loadApp);
