@@ -10,9 +10,6 @@ export const createGlobalInfo = (props) => {
   const element = document.createElement('div');
   element.className = 'global-info';
   element.innerHTML = String.raw`
-    <h1>Global CryptoCurrency Market Info</h1>
-    <br>
-    
     <p>
     <span class="glb-value-name">Market Cap: </span>${moneyFormatter.format(props.market_cap_usd)}    
     <span class="glb-value-name">Volume 24h: </span><span class="global-change">${props.volume_24h_change_24h}</span>
@@ -20,14 +17,7 @@ export const createGlobalInfo = (props) => {
     <span class="glb-value-name">Market Cap ATH Value: </span>${moneyFormatter.format(props.market_cap_ath_value)}  
     <span class="glb-value-name">Bitcoin Dominance: </span>${props.bitcoin_dominance_percentage}</p>
     `
-    document.querySelectorAll('.global-change').forEach(elem => {
-      console.log(elem);
-      // if(Number(elem.innerText) < 0) {
-      //   elem.classList.add('decreasing');
-      // } else if(Number(elem.innerText) > 0) {
-      //   elem.classList.add('increasing');
-      // };
-    });
+    
   return element;
 };
 
@@ -59,12 +49,11 @@ export const createCoinsTable = (props) => {
       <td>${updateTime}</td>
       <td><img src="https://graphs.coinpaprika.com/currency/chart/${id}/7d/chart.svg"></td>`
 
-    changeColor('.change')
     return element;
 } 
 
-function changeColor(className) {
-  document.querySelectorAll(className).forEach(elem => {
+export function changeColor(classNames) {
+  document.querySelectorAll(classNames).forEach(elem => {
     if(Number(elem.innerText) < 0) {
       elem.classList.add('decreasing');
     } else if(Number(elem.innerText) > 0) {

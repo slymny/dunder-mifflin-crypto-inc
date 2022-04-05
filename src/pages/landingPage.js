@@ -1,7 +1,7 @@
 'use strict';
 
-import { USER_INTERFACE_ID, GLOBAL_INFO_ID, API_BASE_URL, GLOBAL_INFO, ARRAY_OF_COIN_IDS, TICKERS, COINS } from '../constants.js';
-import { createGlobalInfo, createCoinsTable } from '../views/landingView.js';
+import { GLOBAL_INFO_ID, API_BASE_URL, GLOBAL_INFO, ARRAY_OF_COIN_IDS, TICKERS, EXPLORER_BASE_URL } from '../constants.js';
+import { createGlobalInfo, createCoinsTable, changeColor } from '../views/landingView.js';
 import { fetchData } from '../lib/fetchData.js';
 import { moneyFormatter } from '../lib/moneyFormatter.js';
 
@@ -21,7 +21,8 @@ export const initLandingPage = async () => {
   coinsInfo
   .sort((a,b) => a.rank - b.rank)
   .forEach(coin => {
-    const coinRow = createCoinsTable(coin)
+    const coinRow = createCoinsTable(coin);
+    changeColor('.change, .global-change');
     table.appendChild(coinRow);
 
     coinRow.onclick = function(e) {
@@ -42,10 +43,8 @@ export const initLandingPage = async () => {
 };
 
 async function openExplorerPage(coin) {
-  const response = await fetchData(`${API_BASE_URL}${COINS}${coin.id}`);
-  window.open(response.links.explorer[0]);
+  window.open(`${EXPLORER_BASE_URL}${coin.id}`);
 };
-// alternative: goes to static web page with the id of the coin
 
 function createNavbarCoinDiv(coin) {
   const coinDiv = document.createElement('div');
