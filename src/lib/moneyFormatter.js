@@ -3,5 +3,3 @@ export const moneyFormatter = new Intl.NumberFormat('en-US', {
     currency: 'USD',
     minimumFractionDigits: 2,
   });
-
-   // default moneyFormatter;
