@@ -17,6 +17,4 @@ const loadApp = () => {
   
 };
 
-document.cookie = "witcher=Geralt; SameSite=None; Secure"
-
 window.addEventListener('load', loadApp);
