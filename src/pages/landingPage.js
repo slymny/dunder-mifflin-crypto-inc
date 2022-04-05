@@ -1,7 +1,7 @@
 'use strict';
 
-import {GLOBAL_INFO_ID, API_BASE_URL, GLOBAL_INFO, ARRAY_OF_COIN_IDS, TICKERS, COINS, START_INDEX, END_INDEX, END_INDEX_NAVBAR, INPUT_FIELD, NAVBAR_COINS_ID} from '../constants.js';
-import {createGlobalInfo, createCoinsTable} from '../views/landingView.js';
+import {GLOBAL_INFO_ID, API_BASE_URL, GLOBAL_INFO, ARRAY_OF_COIN_IDS, TICKERS, COINS_LINK, START_INDEX, END_INDEX, END_INDEX_NAVBAR, INPUT_FIELD, NAVBAR_COINS_ID} from '../constants.js';
+import {createGlobalInfo, createCoinsTable, changeColor} from '../views/landingView.js';
 import {fetchData} from '../lib/fetchData.js';
 import {moneyFormatter} from '../lib/moneyFormatter.js';
 import {showSearchResults} from './searchPage.js';
@@ -16,7 +16,7 @@ export const initLandingPage = async () => {
 
   const table = document.getElementById('coins');
   const coinsInfo = await Promise.all(
-    ARRAY_OF_COIN_IDS.slice(START_INDEX, END_INDEX).map(async coin => {
+    ARRAY_OF_COIN_IDS.map(async coin => {
       coin = await fetchData(`${API_BASE_URL}${TICKERS}${coin}`);
       return coin;
     }),
@@ -26,6 +26,8 @@ export const initLandingPage = async () => {
     .sort((a, b) => a.rank - b.rank)
     .forEach(coin => {
       const coinRow = createCoinsTable(coin);
+      changeColor('.change, .global-change');
+      
       table.appendChild(coinRow);
 
       coinRow.onclick = function () {
@@ -52,9 +54,8 @@ export const initLandingPage = async () => {
   })
 };
 
-export async function openExplorerPage(coin) {
-  const response = await fetchData(`${API_BASE_URL}${COINS}${coin.id}`);
-  window.open(response.links.explorer[0]);
+export function openExplorerPage(coin) {
+ window.open(`${COINS_LINK}${coin.id}`);
 }
 // alternative: goes to static web page with the id of the coin
 
