@@ -24,22 +24,16 @@ export const ARRAY_OF_COIN_IDS = [
   'doge-dogecoin',
   'busd-binance-usd',
   'hex-hex',
-  'avax-avalanche'/*
-  'shib-shiba-inu',
-  'ada-cardano',
-  'luna-terra',
-  'xrp-xrp',
-  'sol-solana',
-  
-  'dot-polkadot',
-  'ust-terrausd',
-  'matic-polygon',
-   , "near-near-protocol", "steth-lido-staked-ether" */,
+  'avax-avalanche'
 ];
 export const START_INDEX = 0;
-export const END_INDEX = 9;
 export const END_INDEX_NAVBAR = 5;
 export const SEARCH_RESULTS_URL = 'https://api.coinpaprika.com/v1/search/?q=';
 export const SEARCH_CURRENCIES_URL = '&c=currencies&limit=9';
 export const INPUT_FIELD = 'input-field';
+export const PERCENT_CHANGE_CLASS = '.change';
+export const PERCENT_CHANGE_GLOBAL_CLASS = '.global-change';
 
+window.addEventListener("beforeunload", () => {
+    localStorage.setItem("coinIds", JSON.stringify(ARRAY_OF_COIN_IDS));
+});
